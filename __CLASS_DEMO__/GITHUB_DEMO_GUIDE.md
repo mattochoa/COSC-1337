@@ -1,18 +1,26 @@
 # COSC-1337 GitHub Repository Setup & Workflow
 
-> **In-Class Showcase + Student Quick Reference**  
-> A single-stop guide for setting up, organizing, publishing, and maintaining COSC-1337 lab work with GitHub and GitHub Desktop.
+---
 
-**Example repository:** https://github.com/mattochoa/COSC-1337
+## Demo Materials
+
+My repository includes a small `__CLASS_DEMO__` folder containing supporting references for the walkthrough:
+
+- [`Git Command Cheat Sheet`](__CLASS_DEMO__/cheat-sheet.pdf)
+      - These are cli commands if you aren't using the desktop app
+- [`ACC — Git Version Control`](__CLASS_DEMO__/versioncontrol.pdf)
+      - These are the ACC official standards for CompSci lab publication according to [Alexander Katrompas, PHD](https://katrompas.accprofessors.com/programming-fundamentals), a professor here at ACC.
+
+
 
 ---
 
-## Demo Goal
+# Walkthrough Objectives
 
 By the end of this walkthrough, you should understand how to:
 
 1. Create your own `COSC-1337` GitHub repository.
-2. Clone it to your computer with GitHub Desktop.
+2. Clone the repository **inside your existing local COSC-1337 course directory**.
 3. Separate **source files**, **working files**, **final files**, and **published files**.
 4. Add completed lab files to the repository.
 5. Maintain a navigable `README.md`.
@@ -20,63 +28,35 @@ By the end of this walkthrough, you should understand how to:
 7. **Push** those commits to GitHub.
 8. Verify that the submitted version actually exists online.
 
-> **Important:** My repository is the example. For your own coursework, create and publish to **your own repository**. You can clone my public repository as a reference copy, but you cannot push changes back to it without repository permissions.
-
 ---
 
-# 1. Understand the Workflow First
-
-The entire system can be reduced to one pipeline:
-
-```text
-Instructor Files
-      ↓
-0_IMPORT
-(source copy — leave unchanged)
-      ↓ copy
-1_WORKING
-(active development copy)
-      ↓ when complete
-2_FINALS
-(finalized local copy)
-      ↓ copy
-GitHub Repo / Labs / <Lab Folder>
-(published course copy)
-      ↓
-COMMIT
-(record the change locally)
-      ↓
-PUSH
-(send the commit to GitHub.com)
-```
-
-### The two Git concepts that matter most
+## The two Git concepts that matter most
 
 | Action | What it does | Where the change exists afterward |
 |---|---|---|
 | **Commit** | Records a snapshot of your repository changes in Git. | Your **local repository** |
 | **Push** | Sends your local commits to the remote GitHub repository. | **GitHub.com** |
 
-A commit that has **not** been pushed still exists only on your computer.
+A commit that has **NOT** been pushed **EXISTS ONLY** on your computer.
 
-> Before an assignment is considered safely published, verify that the completed files are **committed, pushed, and visible on GitHub.com**.
+> Before an assignment is considered safely published, verify that the completed files are **visible on GitHub.com!**
 
 ---
 
-# 2. Recommended Course Folder Structure
+# 1. Recommended Course Folder Structure
 
-Keep your development workspace separate from the repository you publish.
+This is my personal file and folder heirarchy and mapping I use for this class:
 
 ```text
-Programming Fundamentals II/
+<YOUR COSC-1337 PC/MAC COURSE DIRECTORY>/
 │
 ├── 0_CLASS_FILES/
 │   └── Non-lab course files, references, notes, etc.
 │
 ├── 1_GITHUB/
 │   └── COSC-1337/                  ← cloned Git repository
-│       ├── README.md
-│       └── Labs/
+│       ├── README.md               ← index of published labs
+│       └── Labs/                   ← published coursework
 │           └── 00__U2_1.2/
 │               ├── ochoa_Unit2laba.cpp
 │               └── ochoa_Unit2laba_IPO.pdf
@@ -86,6 +66,14 @@ Programming Fundamentals II/
         ├── 0_IMPORT/               ← instructor/source copy
         ├── 1_WORKING/              ← files actively being edited
         └── 2_FINALS/               ← completed local version
+```
+
+If your existing course directory uses different names, that is fine. The important separation is:
+
+```text
+COURSE DIRECTORY
+├── Git repository
+└── Project development workspace
 ```
 
 ## Why separate these folders?
@@ -114,12 +102,13 @@ Store the version you consider complete.
 ### `1_GITHUB/COSC-1337`
 This is the local clone of your GitHub repository.
 
+- Keep it inside your existing course directory.
 - Publish only the files you intend to submit or preserve in the course repository.
-- Each lab gets its own folder under `Labs/`.
+- Give each lab its own folder under `Labs/`.
 
 ---
 
-# 3. One-Time Repository Setup
+# 2. One-Time Repository Setup
 
 ## A. Create the remote repository
 
@@ -157,36 +146,77 @@ https://docs.github.com/en/desktop
 
 ---
 
-## D. Clone your repository
+## D. Clone the repository into your existing course directory
 
-In GitHub Desktop:
+This is the location step to pay attention to during the demo.
+
+Before cloning, locate your **existing local COSC-1337 course directory**.
+
+Inside it, create or select a GitHub subfolder such as:
+
+```text
+<YOUR COURSE DIRECTORY>/1_GITHUB/
+```
+
+Then, in GitHub Desktop:
 
 1. Select **File → Clone repository**.
 2. Select your `COSC-1337` repository.
-3. For the local path, select your `1_GITHUB` folder.
-4. GitHub Desktop will normally create the repository folder beneath it:
+3. Set the **Local path** so the repository will be created inside your existing course directory.
+___
+#### IMPORTANT
+4. A recommended result is:
 
 ```text
-1_GITHUB/COSC-1337/
+<YOUR COURSE DIRECTORY>/1_GITHUB/COSC-1337/
 ```
 
-5. Select **Clone**.
+5. Confirm that you are **not** cloning the repository to an unrelated location such as `Downloads`, the desktop, or a second duplicate course directory like:
+      
+      <small><em>YOUR COURSE DIRECTORY/1_GITHUB/COSC-1337/**COSC-1337/ <<**</em></small>
+______
+
+6. Select **Clone**.
 
 You now have:
 
 ```text
 GitHub.com repository
         ↕
-local COSC-1337 repository
+<existing course directory>/1_GITHUB/COSC-1337/
 ```
 
-The local folder is where you make repository changes. GitHub Desktop synchronizes those changes with GitHub through commits, pushes, pulls, and fetches.
+The local repository folder is where Git tracks repository changes. GitHub Desktop is the interface you will use here to commit, push, pull, and fetch.
 
 ---
 
-# 4. Create the Repository Structure
+# 3. Understand the Showcase Repository
 
-Inside the cloned `COSC-1337` repository, use this basic structure:
+The class demonstration repository contains three distinct kinds of material:
+
+```text
+COSC-1337/
+│
+├── Labs/                            ← published coursework
+|    └── 00__U2_1.2/
+|        ├── ochoa_Unit2laba.cpp
+|        └── ochoa_Unit2laba_IPO.pdf
+|
+└── README.md                        ← index of published labs
+```
+
+Keep these roles separate:
+
+| Location | Purpose |
+|---|---|
+| `README.md` | Acts as the repository's lab index |
+| `Labs/` | Stores published lab deliverables |
+
+---
+
+# 4. Create Your Repository Structure
+
+Inside your cloned `COSC-1337` repository, the minimum course structure is:
 
 ```text
 COSC-1337/
@@ -240,9 +270,9 @@ When a lab is finished:
 Example:
 
 ```text
-2_PROJECTS/U2_lab_1.2/2_FINALS/
+2_PROJECTS/U2_lab_1.2/2_FINALS/<COPY-FILES>
         ↓
-1_GITHUB/COSC-1337/Labs/00__U2_1.2/
+1_GITHUB/COSC-1337/Labs/00__U2_1.2/<PASTE-FILES>
 ```
 
 At this point, GitHub Desktop should detect the newly added or modified files automatically.
@@ -259,27 +289,17 @@ A simple format is:
 # COSC-1337
 ## Programming Fundamentals II Lab Projects
 
-- [Unit 2 Lab A (1.2)](Labs/00__U2_1.2/ochoa_Unit2laba.cpp)
+- [yourLabName](your GitHub permalink)
 ```
 
 Rendered on GitHub, this gives you a clickable list of your lab submissions.
-
-## Relative link vs. permalink
-
-### Relative link
-
-```md
-[Unit 2 Lab A (1.2)](Labs/00__U2_1.2/ochoa_Unit2laba.cpp)
-```
-
-Use this when you want the link to follow the current version of the file in the repository.
 
 ### GitHub permalink
 
 A permalink points to a specific commit/version of a file.
 
 ```md
-[Unit 2 Lab A (1.2)](<your GitHub permalink>)
+- [Unit 2 Lab A (1.2)](https://github.com/mattochoa/COSC-1337/blob/1ca724957c0aef0ac4976ce7fad4bff7759683e9/Labs/00__U2_1.2/ochoa_Unit2laba.cpp)
 ```
 
 Use this when you need the link to remain fixed to the exact submitted version.
@@ -364,17 +384,7 @@ GitHub.com updated
 
 Do not stop at **Commit** or **Push**. Verify the result.
 
-Open your repository on GitHub.com and confirm:
-
-- [ ] The lab folder exists under `Labs/`.
-- [ ] The correct `.cpp` file is present.
-- [ ] Any required PDF, image, or supporting files are present.
-- [ ] The files open correctly.
-- [ ] `README.md` contains the new lab entry.
-- [ ] The README link opens the intended file/folder.
-- [ ] The newest commit is visible on GitHub.
-
-If the files are not visible on GitHub.com, your submission is not fully published yet.
+Open your repository on GitHub.com and confirm. If the files are not visible on GitHub.com, your submission is not fully published yet.
 
 ---
 
@@ -406,6 +416,20 @@ That is the complete course workflow.
 
 # Common Mistakes
 
+### Cloning outside your existing course directory
+
+Do not scatter course work across unrelated locations.
+
+Prefer:
+
+```text
+<YOUR EXISTING COURSE DIRECTORY>/1_GITHUB/COSC-1337/
+```
+
+rather than creating another course folder elsewhere on your computer.
+
+---
+
 ### Committing but forgetting to push
 
 **Commit** records the version locally.  
@@ -415,104 +439,26 @@ If you only committed, GitHub.com may still be missing your newest work.
 
 ---
 
-### Editing the instructor/source copy
+# Reference Materials
 
-Keep `0_IMPORT` unchanged so you always retain the original files.
+### Local demo copies
 
-Develop from the copy in `1_WORKING`.
+- [Git Command Cheat Sheet](__CLASS_DEMO__/cheat-sheet.pdf)
+- [ACC — Katrompas, *Git Version Control*](__CLASS_DEMO__/versioncontrol.pdf)
 
----
+### Online resources
 
-### Publishing the working folder instead of the final version
-
-Your GitHub `Labs/` folder should receive the version from `2_FINALS`, not unfinished development files from `1_WORKING`.
-
----
-
-### Putting the Git repository inside the project workspace
-
-Keep these concepts separate:
-
-```text
-2_PROJECTS = development workspace
-1_GITHUB   = publication/version-control workspace
-```
-
----
-
-### Copying another student's repository as your submission repository
-
-A public repository can be cloned for reference, but cloning it does **not** give you permission to push to the original repository.
-
-For coursework, publish your work to a repository owned by your own GitHub account unless your instructor directs otherwise.
-
----
-
-# Quick Demo Checklist
-
-Use this during the in-class walkthrough.
-
-### One-time setup
-
-- [ ] Sign in to GitHub.
-- [ ] Create `COSC-1337` repository.
-- [ ] Install/sign in to GitHub Desktop.
-- [ ] Clone repository into `1_GITHUB/`.
-- [ ] Create `Labs/`.
-- [ ] Create or update `README.md`.
-
-### Demonstrate one lab
-
-- [ ] Show `0_IMPORT`.
-- [ ] Show `1_WORKING`.
-- [ ] Show `2_FINALS`.
-- [ ] Copy the final lab into `COSC-1337/Labs/<Lab>/`.
-- [ ] Add the lab to `README.md`.
-- [ ] Open GitHub Desktop and show detected changes.
-- [ ] Enter a commit message.
-- [ ] **Commit to main**.
-- [ ] **Push origin**.
-- [ ] Open GitHub.com and verify the files.
-- [ ] Click the README lab link to prove navigation works.
-
----
-
-# Reference Links
-
-### GitHub Desktop
+**GitHub Desktop**  
 https://desktop.github.com/download/
 
-### GitHub Desktop Documentation
+**GitHub Desktop Documentation**  
 https://docs.github.com/en/desktop
 
-### Git Command Cheat Sheet
+**Git Command Cheat Sheet**  
 https://git-scm.com/cheat-sheet.pdf
 
-### ACC — Katrompas, *Git Version Control*
+**ACC — Katrompas, _Git Version Control_**  
 https://katrompas.accprofessors.com/assets/docs/versioncontrol.pdf
 
-### Showcase Repository
+**Showcase Repository**  
 https://github.com/mattochoa/COSC-1337
-
----
-
-## Final Mental Model
-
-```text
-YOUR PROJECT FOLDERS
-are where you DEVELOP.
-
-YOUR LOCAL GIT REPOSITORY
-is where you PREPARE AND RECORD published versions.
-
-GITHUB.COM
-is the REMOTE copy that others can access.
-
-COMMIT
-records repository history locally.
-
-PUSH
-publishes that committed history to GitHub.
-```
-
-**Development → Finalization → Repository → Commit → Push → Verify**
