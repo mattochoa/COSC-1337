@@ -39,10 +39,10 @@ void clrScreen() {
 // Clear any flags in iostate
 int clrFlags(std::istringstream& s){
 
-    // Clear console in stream
+    // Clear flags for console in stream
     std::cin.clear();
 
-    // Clear string in stream
+    // Clear flags for string in stream
     s.clear();
 
     return 0;
@@ -59,7 +59,7 @@ int clrStream(std::istringstream& s){
     // Store the max limit for the stream size
     auto max_size = std::numeric_limits<std::streamsize>::max();
 
-    // Clear 's' stream
+    // Clear 's' stream buffer
     s.ignore(max_size, '\n');
 
     return 0;
@@ -84,10 +84,12 @@ bool checkLen(std::string& line){
 bool checkSpaces(std::string& line){
 
     if(line.find_first_of(" \n\t")!=line.npos){
-        return true;} // Input has no whitespace characters
+        return true;} // Input has  whitespace characters
         else{
-            return false;} // Input does has whitespace characters
+            return false;} // Input doesn't have whitespace characters
 }
+
+// I came back after deadline to fix comments, but didn't cheat and modify logic.
 
 
 // Check 1) if and 2) how many '/' characters exist in line
@@ -119,7 +121,7 @@ bool checkSlash(std::string& line, std::string& l1, std::string& l2, std::string
 
 
 // Find out if each character in range of string 's' is between 0-9
-// Return 0 if not; or greater than 0 value if is
+// Return false if not; or true
 bool isCharInt(std::string& s){
 
     int i = 0;
